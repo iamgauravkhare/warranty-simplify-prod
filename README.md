@@ -1,17 +1,5 @@
 # Warranty-Simplify
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-
-## Introduction
-
-The Warranty Claim Web Application is a robust platform designed to streamline the process of managing warranty claims for consumers, retailers, and manufacturers. The application allows users to register and claim warranties, track the status of their claims in real-time, and manage the entire lifecycle of a warranty claim efficiently.
-
 ### Live Link
 
 Check out the live application [here](https://your-deployed-link.com).
@@ -53,8 +41,7 @@ Check out the live application [here](https://your-deployed-link.com).
 ### Prerequisites
 
 - Node.js and npm installed
-- MongoDB instance running
-- Cloudinary account for document storage
+- MongoDB instance running (if wnat to run local)
 
 ### Steps
 
@@ -94,6 +81,7 @@ Check out the live application [here](https://your-deployed-link.com).
 ## Usage
 
 1. Open your browser and navigate to `http://localhost:5173`.
-2. Register a new user account or log in with an existing account.
-3. Depending on your role (Consumer, Retailer, Manufacturer), you will be redirected to the appropriate dashboard.
-4. Use the dashboard to register new warranties, claim existing warranties, and track the status of your claims.
+2. To test the app, first create a manufacturer account with a brand name (e.g., Nike, Puma, Vivo, Samsung, Skechers). Then, create a retailer account and select the same brands. Finally, create a consumer account and register a warranty for a product that matches the manufacturer account's brand. Ensure both the manufacturer and retailer accounts exist before claiming a warranty. Note that only the specified brands are available for now.
+3. Register a new user account or log in with an existing account.
+4. Depending on your role (Consumer, Retailer, Manufacturer), you will be redirected to the appropriate dashboard.
+5. Use the dashboard to register new warranties, claim existing warranties, and track the status of your claims.

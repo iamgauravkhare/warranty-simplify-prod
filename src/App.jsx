@@ -29,6 +29,7 @@ import ForgetPassword from "./pages/ForgetPassword";
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       const data = {
