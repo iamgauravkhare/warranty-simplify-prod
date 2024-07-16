@@ -16,7 +16,7 @@ export const registerWarranty = async (req, res) => {
       });
     }
     const registeredWarrantyData = await registeredWarrantyModel.create({
-      brandname,
+      brandname: brandname.toLowerCase(),
       productId,
     });
     await consumerServicesModel.create({
@@ -111,7 +111,7 @@ export const claimWarranty = async (req, res) => {
       fileType: invoicePayloadUploadResponse[0].resource_type,
     };
     const claimedWarrantyData = await claimedWarrantyModel.create({
-      brandname,
+      brandname: brandname.toLowerCase(),
       productId,
       issue: productIssue,
       invoice: invoiceDatabasePayload,

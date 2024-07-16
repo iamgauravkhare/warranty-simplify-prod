@@ -7,7 +7,7 @@ const ConsRegisteredWarranties = () => {
       <h2 className="text-gray-800 font-semibold text-xl">
         Showing Registered Warranties
       </h2>
-      {!registeredWarramtyData && (
+      {!registeredWarramtyData?.length && (
         <div className="text-center text-gray-800">No data is available</div>
       )}
       {registeredWarramtyData &&

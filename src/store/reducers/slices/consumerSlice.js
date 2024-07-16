@@ -4,9 +4,9 @@ export const consumerSlice = createSlice({
   name: "consumer",
   initialState: {
     consumerData: null,
-    registeredWarramtyData: null,
-    claimedWarrantyData: null,
-    notifications: null,
+    registeredWarramtyData: [],
+    claimedWarrantyData: [],
+    notifications: [],
   },
   reducers: {
     setConsumerData: (state, action) => {

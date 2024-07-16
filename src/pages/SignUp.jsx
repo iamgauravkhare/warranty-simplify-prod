@@ -155,7 +155,7 @@ const SignUp = () => {
                 name="password"
                 autoComplete="new-password"
                 className="border border-gray-300 rounded-md p-3 outline-none"
-                {...register("password", { required: true })}
+                {...register("password", { required: true }, { min: "8" })}
               />
               {errors.password && (
                 <p className="text-red-600">Password is required.</p>

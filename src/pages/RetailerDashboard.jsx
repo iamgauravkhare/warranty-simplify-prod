@@ -191,7 +191,7 @@ const RetailerDashboard = () => {
             <h2 className="text-gray-800 font-semibold text-xl">
               Showing Claimed Warranties
             </h2>
-            {!claimedWarrantyData && (
+            {!claimedWarrantyData?.length && (
               <div className="text-center text-gray-800">
                 No data is available
               </div>

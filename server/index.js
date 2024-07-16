@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
   });
 });
 
-if (process.env.ENVIRONMENT === "dev") {
+if (process.env.ENVIRONMENT) {
   app.listen(PORT, () => {
     console.log("Server is up!");
   });

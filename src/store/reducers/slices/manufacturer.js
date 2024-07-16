@@ -4,8 +4,8 @@ export const manufacturerSlice = createSlice({
   name: "manufacturer",
   initialState: {
     manufacturerData: null,
-    claimedWarrantyData: null,
-    notifications: null,
+    claimedWarrantyData: [],
+    notifications: [],
   },
   reducers: {
     setManufacturerData: (state, action) => {

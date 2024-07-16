@@ -45,9 +45,9 @@ export const signUp = async (req, res) => {
     const newUserPayload = {
       firstname,
       lastname,
-      username,
+      username: username.toLowerCase(),
       password: hashpassword,
-      email,
+      email: email.toLowerCase(),
       accountType,
       mobileNumber,
     };
@@ -55,7 +55,7 @@ export const signUp = async (req, res) => {
     if (user.accountType === "manufacturer") {
       await manufacturerServicesModel.create({
         manufacturerId: user._id,
-        brandname: req.body.brandname,
+        brandname: req.body.brandname.toLowerCase(),
       });
     }
     user.password = "";
@@ -92,6 +92,7 @@ export const signUp = async (req, res) => {
 export const signIn = async (req, res) => {
   try {
     const { username, password } = req.body;
+
     if (!username || !password) {
       return res.status(404).json({
         success: false,
@@ -99,7 +100,7 @@ export const signIn = async (req, res) => {
       });
     }
     const user = await userModel
-      .findOne({ username: username })
+      .findOne({ username: username.toLowerCase() })
       .select("+password")
       .populate({
         path: "notifications",
@@ -182,7 +183,7 @@ export const forgetPasswordOtp = async (req, res) => {
         .status(404)
         .json({ success: false, message: "Invalid entries!" });
     }
-    const user = await userModel.findOne({ email: email });
+    const user = await userModel.findOne({ email: email.toLowerCase() });
     if (!user) {
       return res
         .status(401)
@@ -226,7 +227,7 @@ export const resetPassword = async (req, res) => {
         .status(404)
         .json({ success: false, message: "Password not matched!" });
     }
-    const user = await userModel.findOne({ email: email });
+    const user = await userModel.findOne({ email: email.toLowerCase() });
     if (!user) {
       return res
         .status(401)

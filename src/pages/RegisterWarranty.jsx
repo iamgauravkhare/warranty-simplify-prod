@@ -18,6 +18,7 @@ const RegisterWarranty = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const registerWarrantyHandler = (data) => {
+    data.brandname.toLowerCase();
     dispatch(registerWarrantyAPIHandler(data, token, navigate));
   };
   useEffect(() => {

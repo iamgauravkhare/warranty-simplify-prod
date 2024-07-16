@@ -9,11 +9,11 @@ const ConsClaimedWarranties = () => {
       <h2 className="text-gray-800 font-semibold text-xl">
         Showing Claimed Warranties
       </h2>
-      {!claimedWarrantyData && (
+      {!claimedWarrantyData?.length && (
         <div className="text-center text-gray-800">No data is available</div>
       )}
       {claimedWarrantyData &&
-        claimedWarrantyData.map((data, i) => {
+        claimedWarrantyData?.map((data, i) => {
           return (
             <div
               className="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-10 text-gray-800 text-[14px] border rounded-md  hover:shadow-lg transition-all duration-200"

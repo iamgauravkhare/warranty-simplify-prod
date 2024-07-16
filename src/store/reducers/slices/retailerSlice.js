@@ -4,9 +4,9 @@ export const retailerSlice = createSlice({
   name: "retailer",
   initialState: {
     retailerData: null,
-    claimedWarrantyData: null,
-    notifications: null,
-    associatedBrands: null,
+    claimedWarrantyData: [],
+    notifications: [],
+    associatedBrands: [],
   },
   reducers: {
     setRetailerData: (state, action) => {
