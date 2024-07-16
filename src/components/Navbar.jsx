@@ -131,7 +131,9 @@ const Navbar = () => {
                       ? consNotifications?.length
                       : accountType === "retailer"
                       ? retaNotifications?.length
-                      : manuNotifications?.length}
+                      : accountType === "manufacturer"
+                      ? manuNotifications?.length
+                      : 0}
                   </span>
                 </span>
               </button>
@@ -241,7 +243,7 @@ const Navbar = () => {
               <></>
             )}
             {accountType && accountType === "retailer" ? (
-              retaNotifications ? (
+              retaNotifications.length ? (
                 retaNotifications?.map((e) => (
                   <div
                     className="w-full bg-violet-50 text-gray-800 italic transition-all flex flex-col gap-1 duration-200 rounded-md p-3"
