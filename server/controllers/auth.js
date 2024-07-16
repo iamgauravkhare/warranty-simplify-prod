@@ -99,12 +99,21 @@ export const signIn = async (req, res) => {
         message: "Inavalid or blank entries!",
       });
     }
+    const { accountType } = await userModel.findOne({
+      username: username.toLowerCase(),
+    });
+    console.log("yaha tak ayya");
     const user = await userModel
       .findOne({ username: username.toLowerCase() })
       .select("+password")
       .populate({
         path: "notifications",
-        match: { markAsRead: false },
+        match:
+          accountType === "consumer"
+            ? { markAsReadByConsumer: false }
+            : accountType === "retailer"
+            ? { markAsReadByRetailer: false }
+            : { markAsReadByManufacturer: false },
       });
     if (!user) {
       return res.status(401).json({
@@ -143,6 +152,7 @@ export const signIn = async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       success: false,
       message: "Something went wrong!",
@@ -153,10 +163,18 @@ export const signIn = async (req, res) => {
 // fetching-user-data-route-handler
 export const userData = async (req, res) => {
   try {
+    const acType = req.user.accountType;
+
     const user = await userModel.findById(req.user.id).populate({
       path: "notifications",
-      match: { markAsRead: false },
+      match:
+        acType === "consumer"
+          ? { markAsReadByConsumer: false }
+          : acType === "retailer"
+          ? { markAsReadByRetailer: false }
+          : { markAsReadByManufacturer: false },
     });
+
     const responsePayload = {
       user: user,
       accountType: user.accountType,

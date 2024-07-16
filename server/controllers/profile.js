@@ -6,9 +6,22 @@ import { cloudinaryMediaUploadHandler } from "../utils/cloudinaryMediaUploadHand
 // profile data upload route handler
 export const updateProfile = async (req, res) => {
   try {
-    const data = await userModel.findByIdAndUpdate(req.user.id, req.body, {
-      new: true,
-    });
+    const acType = req.user.accountType;
+
+    const data = await userModel
+      .findByIdAndUpdate(req.user.id, req.body, {
+        new: true,
+      })
+      .populate({
+        path: "notifications",
+        match:
+          acType === "consumer"
+            ? { markAsReadByConsumer: false }
+            : acType === "retailer"
+            ? { markAsReadByRetailer: false }
+            : { markAsReadByManufacturer: false },
+      });
+
     return res.status(200).json({
       success: true,
       message: "Profile data updated",

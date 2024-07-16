@@ -16,15 +16,15 @@ import ConsumerProtectedRoute from "./components/ConsumerProtectedRoute";
 import RetailerProtectedRoute from "./components/RetailerProtectedRoute";
 import ManufacturerProtectedRoute from "./components/ManufacturerProtectedRoute";
 import Footer from "./components/Footer";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { alreadySignedInAPIHandler } from "./services/auth/authAPIHandler";
 import ConsClaimedWarranties from "./components/ConsClaimedWarranties";
 import ConsRegisteredWarranties from "./components/ConsRegisteredWarranties";
 import ConAccSettings from "./pages/ConAccSettings";
 import RetAccSettings from "./pages/RetAccSettings";
 import ManAccSettings from "./pages/ManAccSettings";
 import ForgetPassword from "./pages/ForgetPassword";
+import { useDispatch } from "react-redux";
+import { alreadySignedInAPIHandler } from "./services/auth/authAPIHandler";
+import { useEffect } from "react";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,7 +38,6 @@ function App() {
       dispatch(alreadySignedInAPIHandler(data, navigate));
     }
   }, []);
-
   return (
     <div className="w-full min-h-screen relative">
       <Navbar />

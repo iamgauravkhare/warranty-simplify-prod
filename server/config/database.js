@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const DBURL =
-  process.env.ENVIRONMENT == "true"
+  process.env.ENVIRONMENT === "development"
     ? process.env.DB_URL
     : process.env.REMOTE_DB_URL;
 

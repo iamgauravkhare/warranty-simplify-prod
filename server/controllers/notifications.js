@@ -3,11 +3,15 @@ import { userModel } from "../models/user.js";
 
 export const markAsRead = async (req, res) => {
   try {
+    const acType = req.user.accountType;
+
     const updatedData = await notificationModel.findByIdAndUpdate(
       req.body.id,
-      {
-        markAsRead: true,
-      },
+      acType === "consumer"
+        ? { markAsReadByConsumer: true }
+        : acType === "retailer"
+        ? { markAsReadByRetailer: true }
+        : { markAsReadByManufacturer: true },
       { new: true }
     );
 
@@ -15,7 +19,12 @@ export const markAsRead = async (req, res) => {
       .findById(req.user.id)
       .populate({
         path: "notifications",
-        match: { markAsRead: false },
+        match:
+          acType === "consumer"
+            ? { markAsReadByConsumer: false }
+            : acType === "retailer"
+            ? { markAsReadByRetailer: false }
+            : { markAsReadByManufacturer: false },
       })
       .select("notifications");
 

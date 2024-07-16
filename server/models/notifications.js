@@ -2,14 +2,18 @@ import mongoose from "mongoose";
 
 const notificationSchema = new mongoose.Schema(
   {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
-    },
     message: {
       type: String,
     },
-    markAsRead: {
+    markAsReadByConsumer: {
+      type: Boolean,
+      default: false,
+    },
+    markAsReadByManufacturer: {
+      type: Boolean,
+      default: false,
+    },
+    markAsReadByRetailer: {
       type: Boolean,
       default: false,
     },

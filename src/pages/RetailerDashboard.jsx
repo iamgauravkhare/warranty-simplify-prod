@@ -34,7 +34,7 @@ const RetailerDashboard = () => {
   };
 
   useEffect(() => {
-    if (associatedBrands) {
+    if (associatedBrands?.length) {
       dispatch(getRetailerClaimWarrantyAPIHandler(token));
     }
   }, [associatedBrands]);

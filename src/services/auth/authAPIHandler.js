@@ -22,6 +22,7 @@ import {
   setRetailerData,
   setRetaClaimedWarrantyData,
   setRetaNotifications,
+  setAssociatedBrands,
 } from "../../store/reducers/slices/retailerSlice";
 import { APIHandler } from "../../utils/axiosInstance";
 
@@ -34,10 +35,19 @@ export const signUpAPIHandler = (data, navigate) => async (dispatch) => {
       const acType = response.data.responsePayload.accountType;
       if (acType === "consumer") {
         dispatch(setConsumerData(response.data.responsePayload.user));
+        dispatch(
+          setConsNotifications(response.data.responsePayload.user.notifications)
+        );
       } else if (acType === "retailer") {
         dispatch(setRetailerData(response.data.responsePayload.user));
+        dispatch(
+          setRetaNotifications(response.data.responsePayload.user.notifications)
+        );
       } else if (acType === "manufacturer") {
         dispatch(setManufacturerData(response.data.responsePayload.user));
+        dispatch(
+          setManuNotifications(response.data.responsePayload.user.notifications)
+        );
       }
       dispatch(setToken(response.data.responsePayload.token));
       dispatch(setAccountType(response.data.responsePayload.accountType));
@@ -134,9 +144,12 @@ export const alreadySignedInAPIHandler =
         );
         dispatch(setAccountType(response.data.responsePayload.accountType));
         navigate(`/${response.data.responsePayload.accountType}-dashboard`);
+      } else {
+        toast.error(error.response.data.message);
       }
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error("Sign in again to continue!");
+      navigate("/sign-in");
     }
     dispatch(setLoading(false));
   };
@@ -151,17 +164,18 @@ export const logoutAPIHandler = (navigate) => async (dispatch, getState) => {
     dispatch(setDisplayPicture(null));
     if (accountType === "consumer") {
       dispatch(setConsumerData(null));
-      dispatch(setRegisteredWarramtyData(null));
-      dispatch(setConsClaimedWarrantyData(null));
-      dispatch(setConsNotifications(null));
+      dispatch(setRegisteredWarramtyData([]));
+      dispatch(setConsClaimedWarrantyData([]));
+      dispatch(setConsNotifications([]));
     } else if (accountType === "retailer") {
       dispatch(setRetailerData(null));
-      dispatch(setRetaClaimedWarrantyData(null));
-      dispatch(setRetaNotifications(null));
+      dispatch(setRetaClaimedWarrantyData([]));
+      dispatch(setRetaNotifications([]));
+      dispatch(setAssociatedBrands([]));
     } else if (accountType === "manufacturer") {
       dispatch(setManufacturerData(null));
-      dispatch(setManuClaimedWarrantyData(null));
-      dispatch(setManuNotifications(null));
+      dispatch(setManuClaimedWarrantyData([]));
+      dispatch(setManuNotifications([]));
     }
     localStorage.removeItem("token");
     navigate(`/sign-in`);

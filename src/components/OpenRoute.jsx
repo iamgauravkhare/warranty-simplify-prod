@@ -10,6 +10,8 @@ const OpenRoute = ({ children }) => {
       return <Navigate to="/retailer-dashboard" />;
     } else if (accountType === "manufacturer") {
       return <Navigate to="/manufacturer-dashboard" />;
+    } else {
+      return children;
     }
   } else {
     return children;

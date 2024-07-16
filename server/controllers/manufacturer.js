@@ -70,7 +70,6 @@ export const approveClaim = async (req, res) => {
       { new: true }
     );
     const notiData = await notificationModel.create({
-      userId: claimData.consumerId,
       message: "Claim approved by manufacturer with claim id - " + claimId,
     });
     await userModel.findByIdAndUpdate(

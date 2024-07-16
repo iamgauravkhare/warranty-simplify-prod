@@ -96,7 +96,6 @@ export const forwardClaimToManufacture = async (req, res) => {
       { new: true }
     );
     const notiData = await notificationModel.create({
-      userId: updatedData.consumerId,
       message: "Claim forwaded to manufacturer with claim id - " + claimId,
     });
     const manuData = await manufacturerServicesModel.findOne({

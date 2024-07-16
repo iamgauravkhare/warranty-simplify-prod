@@ -1,9 +1,0 @@
-Frontend - 
-
-Navbar.jsx
-README.md
-
-Backend -
-
-email service
-
